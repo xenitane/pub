@@ -1,0 +1,71 @@
+---
+import BaseLayout, { type BaseLayoutProps } from "@/layouts/BaseLayout.astro";
+import cdnify from "@/lib/cdnify";
+import cn from "@/lib/cn";
+import hashSlug from "@/lib/hashSlug";
+import sortByLatest from "@/lib/sortByLatest";
+import { getCollection } from "astro:content";
+
+const pageMetaData = {
+    title: "",
+    description: "Xenitane's Publications",
+    keywords: ["portfolio", "xenitane", "blogs", "articles"],
+} satisfies BaseLayoutProps;
+
+const publications = (
+    await getCollection("publication", function (publication) {
+        return import.meta.env.DEV || !publication.data.isDraft;
+    })
+).sort(sortByLatest);
+---
+
+<BaseLayout {...pageMetaData}>
+    <h1 id="title" class="flex items-center py-4 text-3xl font-bold">My Blogs &amp; Articles</h1>
+    {
+        0 === publications.length ? (
+            <div
+                class={cn(
+                    "flex h-24 w-full items-center justify-center rounded-lg bg-neutral-100/70 p-4 text-lg font-semibold italic",
+                    "dark:bg-neutral-900/70"
+                )}
+            >
+                Scribbling and Drafting some ideas, Keep your eyes open&hellip;
+            </div>
+        ) : (
+            <div class={cn("grid gap-4", "md:grid-cols-3")}>
+                {publications.map(function ({
+                    slug: slg,
+                    data: {
+                        metaContent: { heroImage, title },
+                    },
+                }) {
+                    const slug = hashSlug(slg);
+                    return (
+                        <a
+                            href={`/${slug}`}
+                            class={cn(
+                                "relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl border border-neutral-300",
+                                "md:border-2",
+                                "dark:border-neutral-700"
+                            )}
+                        >
+                            <img
+                                src={cdnify(heroImage)}
+                                alt={`hero-image-${slug}`}
+                                class="min-h-full min-w-full object-cover grayscale"
+                            />
+                            <div
+                                class={cn(
+                                    "absolute inset-x-0 bottom-0 flex h-16 w-full items-center bg-neutral-400/60 p-4",
+                                    "dark:bg-neutral-600/60"
+                                )}
+                            >
+                                <span class="overflow-hidden text-nowrap text-ellipsis">{title}</span>
+                            </div>
+                        </a>
+                    );
+                })}
+            </div>
+        )
+    }
+</BaseLayout>

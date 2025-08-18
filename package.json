@@ -1,0 +1,70 @@
+{
+    "name": "pub-xenitane-xyz",
+    "type": "module",
+    "version": "0.1.0",
+    "private": true,
+    "description": "blogs and articles",
+    "keywords": [
+        "astro",
+        "blogs",
+        "articles",
+        "website",
+        "javascript",
+        "typescript",
+        "alpinejs",
+        "tailwindcss",
+        "tailwind",
+        "markdown"
+    ],
+    "license": "GLWTFSPL",
+    "author": "xenitane",
+    "homepage": "https://pub.xenitane.xyz",
+    "engines": {
+        "node": ">=18"
+    },
+    "browserList": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro check && astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "format": "prettier --write \"**/*.{js,ts,css,json,html,md,mdx,yml,yaml,astro,mdx,jsx,tsx,svelte,vue}\"",
+        "reset": "rm -rf ./dist"
+    },
+    "dependencies": {
+        "@fontsource/geist-mono": "^5.2.6",
+        "@fontsource/geist-sans": "^5.2.5",
+        "tailwindcss": "^4.1.12"
+    },
+    "devDependencies": {
+        "@astrojs/check": "^0.9.4",
+        "@astrojs/mdx": "^4.3.4",
+        "@astrojs/sitemap": "^3.5.0",
+        "@tailwindcss/vite": "^4.1.12",
+        "astro": "^5.13.2",
+        "astro-compressor": "^1.1.2",
+        "clsx": "^2.1.1",
+        "prettier": "^3.6.2",
+        "prettier-plugin-astro": "^0.14.1",
+        "prettier-plugin-organize-imports": "^4.2.0",
+        "prettier-plugin-tailwindcss": "^0.6.14",
+        "rehype-mathjax": "^7.1.0",
+        "rehype-pretty-code": "^0.14.1",
+        "remark-math": "^6.0.0",
+        "shiki": "^3.9.2",
+        "tailwind-merge": "^3.3.1",
+        "typescript": "^5.9.2",
+        "unist-util-visit": "^5.0.0"
+    }
+}

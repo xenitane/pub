@@ -1,0 +1,16 @@
+node_modules/
+
+# Ignore artifacts:
+coverage/
+dist/
+build/
+__mocks__/
+
+
+src/theme/
+*.md
+*.mdx
+!src/**/*.md
+!src/**/*.md
+
+pnpm-lock.yaml

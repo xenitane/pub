@@ -1,0 +1,58 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import cdnify from "@/lib/cdnify";
+import cn from "@/lib/cn";
+import formatDate from "@/lib/formatDate";
+import hashSlug from "@/lib/hashSlug";
+import { getCollection } from "astro:content";
+
+import "@fontsource/geist-mono";
+import "@/styles/pub.css";
+import { links } from "@/constants";
+
+export async function getStaticPaths() {
+    return (
+        await getCollection("publication", function (publication) {
+            return import.meta.env.DEV || !publication.data.isDraft;
+        })
+    ).map(function (publication) {
+        return {
+            params: { slug: hashSlug(publication.slug) },
+            props: publication,
+        };
+    });
+}
+
+const publication = Astro.props;
+const { Content } = await publication.render();
+const {
+    data: { metaContent, createdAt },
+} = publication;
+const { heroImage, title } = metaContent;
+---
+
+<BaseLayout {...metaContent} image={cdnify(heroImage)}>
+    <a class="w-fit" href={links.forNav.Blogs}>&leftarrow;<span class="underline">All Blogs &amp; Articles</span></a>
+    <div
+        class={cn(
+            "mb-4 flex w-5/6 mx-auto aspect-video items-center justify-center overflow-hidden rounded-2xl border border-neutral-300",
+            "md:border-2",
+            "dark:border-neutral-700"
+        )}
+    >
+        <img
+            src={cdnify(heroImage)}
+            class="min-h-full min-w-full object-cover grayscale"
+            alt={`${title} - Publication Hero Image`}
+        />
+    </div>
+    <div class="flex flex-col gap-1">
+        <h1 class={cn("flex items-center text-2xl font-bold", "md:text-3xl")}>
+            {title}
+        </h1>
+        <span class="min-w-fit text-nowrap">published on {formatDate(createdAt)}</span>
+    </div>
+    <div id="publication-content">
+        <Content />
+    </div>
+</BaseLayout>
