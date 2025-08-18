@@ -1,0 +1,35 @@
+---
+import { links } from "@/constants";
+import BaseLayout, { type BaseLayoutProps } from "@/layouts/BaseLayout.astro";
+import cn from "@/lib/cn";
+const pageMetaData = {
+    title: "404 - Page Not Found",
+    description: "404 page",
+    keywords: ["404", "error page", "page not found"],
+} satisfies BaseLayoutProps;
+---
+
+<BaseLayout {...pageMetaData}>
+    <div class="flex flex-col items-center justify-center gap-4">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="h-64"
+            fill="currentColor"
+            stroke="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path d="M13 17.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-8.25a.75.75 0 0 0-1.5 0v4.5a.75.75 0 0 0 1.5 0v-4.5Z"
+            ></path><path
+                d="M9.836 3.244c.963-1.665 3.365-1.665 4.328 0l8.967 15.504c.963 1.667-.24 3.752-2.165 3.752H3.034c-1.926 0-3.128-2.085-2.165-3.752Zm3.03.751a1.002 1.002 0 0 0-1.732 0L2.168 19.499A1.002 1.002 0 0 0 3.034 21h17.932a1.002 1.002 0 0 0 .866-1.5L12.866 3.994Z"
+            ></path></svg
+        >
+        <span class="flex gap-10 text-8xl font-thin">
+            <span>4</span>
+            <span>0</span>
+            <span>4</span>
+        </span>
+        <span class={cn("font-light", "sm:text-xl")}>The Page You Are Looking For Does Not Exist.</span>
+        <span class="text-lg font-medium underline"><a href={links.forNav.Home}>Go Home</a></span>
+    </div>
+</BaseLayout>
