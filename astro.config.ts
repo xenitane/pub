@@ -21,8 +21,8 @@ const markdownConfig = {
         ],
         [rehypePrettyCode, { theme: { light: "catppuccin-latte", dark: "catppuccin-mocha" } }],
         function () {
-            return function (tree) {
-                async function copy(e) {
+            return function (tree: any) {
+                async function copy(e: any) {
                     e.preventDefault();
                     const el = e.currentTarget;
                     const value = el.previousElementSibling.innerText;
@@ -36,7 +36,7 @@ const markdownConfig = {
                     el.innerText = "copied!";
                 }
 
-                function visitor(node) {
+                function visitor(node: any) {
                     if (
                         !(
                             "data-rehype-pretty-code-figure" in (node.properties ?? []) &&

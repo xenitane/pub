@@ -28,11 +28,10 @@ jobs:
                   run_install: false
             - uses: actions/setup-node@v4
               with:
-                  node-version: 20
+                  node-version: 22
                   cache: "pnpm"
             - run: pnpm install
             - run: pnpm build
-            - run: chmod a+x ./sitemap-injector.sh && ./sitemap-injector.sh
             - run: echo $DOMAIN_NAME > ./dist/CNAME
             - uses: peaceiris/actions-gh-pages@v4
               with:
