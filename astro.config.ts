@@ -68,23 +68,9 @@ export default defineConfig({
     devToolbar: { enabled: false },
     env: {
         schema: {
-            SITE_URL: envField.string({
-                context: "client",
-                access: "public",
-                optional: false,
-                url: true,
-            }),
-            CDN_URL: envField.string({
-                context: "client",
-                access: "public",
-                optional: false,
-                url: true,
-            }),
-            DOMAIN_NAME: envField.string({
-                context: "client",
-                access: "public",
-                optional: false,
-            }),
+            SITE_URL: envField.string({ context: "client", access: "public", optional: false, url: true }),
+            CDN_URL: envField.string({ context: "client", access: "public", optional: false, url: true }),
+            DOMAIN_NAME: envField.string({ context: "client", access: "public", optional: false }),
         },
     },
     integrations: [sitemap(), mdx(markdownConfig as Partial<MdxOptions>), compressor()],

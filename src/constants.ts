@@ -2,9 +2,6 @@ import { DOMAIN_NAME } from "astro:env/client";
 // for layout
 export const SITE_TITLE = `Blogs | Xenitane (xenitane) | ${DOMAIN_NAME}`;
 
-// for homepage
-export const MAX_SECTION_LENGTH = 8;
-
 export const links = {
     forNav: {
         Home: "https://www.xenitane.xyz",
