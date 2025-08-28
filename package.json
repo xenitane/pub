@@ -52,7 +52,7 @@
         "@astrojs/mdx": "^4.3.4",
         "@astrojs/sitemap": "^3.5.0",
         "@tailwindcss/vite": "^4.1.12",
-        "astro": "^5.13.2",
+        "astro": "^5.13.4",
         "astro-compressor": "^1.1.2",
         "clsx": "^2.1.1",
         "prettier": "^3.6.2",
